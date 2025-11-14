@@ -1,0 +1,40 @@
+body {
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #eef2f3;
+  min-height: 100vh;
+  margin: 0;
+}
+
+.container {
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.box-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.box-container div {
+  width: 160px;
+  height: 100px;
+  background-color: #f8f9fa;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  border: 2px solid #dee2e6;
+  font-family: Arial, sans-serif;
+}
