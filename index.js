@@ -13,6 +13,27 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelector(".box3 .value").textContent = data["Right Weight"]
     document.querySelector(".box4 .value").textContent = data["Tilt Angle"]
 
+    const plank = document.querySelector(".plank");
+    const clickable = document.querySelector(".clickable");
+    const resetButton = document.querySelector(".resetButton");
+    let circleCount = 0; // Yuvarlakların konumunu takip etmek için
 
-    
+    let previewCircle = document.createElement("div");
+    previewCircle.className = "preview-circle";
+    plank.appendChild(previewCircle);
+
+    clickable.addEventListener("mousemove", (event) => {
+        console.log("Mouse move");
+        const rect = clickable.getBoundingClientRect();
+        const hoverX = event.clientX - rect.left;
+        previewCircle.style.left = hoverX - 20 + "px";
+        previewCircle.innerHTML = data["Next Weight"];
+        previewCircle.style.opacity = "1";
+    });
+
+    // Mouse clickable'dan çıkınca preview kaybolsun
+    clickable.addEventListener("mouseleave", () => {
+        console.log("mouse leave");
+        previewCircle.style.opacity = "0";
+    });
 })

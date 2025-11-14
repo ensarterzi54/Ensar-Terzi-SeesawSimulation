@@ -38,3 +38,68 @@ body {
   border: 2px solid #dee2e6;
   font-family: Arial, sans-serif;
 }
+
+.main-clickable {
+  border: 2px solid #ccc;
+  background-color: #f8f9fa;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  border-radius: 8px;
+}
+
+.clickable {
+  width: 400px;
+  height: 350px;
+  cursor: pointer;
+  border-radius: 8px;
+  position: relative;
+}
+
+.plank {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 400px;
+  height: 20px;
+  background-color: #8b5a2b;
+  transform: translate(-50%, -50%);
+  transform-origin: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+  transition: transform 0.3s ease;
+  z-index: 1;
+}
+
+.pivot {
+  position: absolute;
+  left: 50%;
+  top: calc(50% + 0px);
+  width: 0;
+  height: 0;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-bottom: 40px solid #555;
+  transform: translateX(-50%);
+  z-index: 0;
+}
+
+.preview-circle {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  top: calc(50% - 60px); /* Plank'ın üstünde */
+  background-color: rgba(0, 123, 255, 0.3);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  color: #007bff;
+  font-size: 14px;
+}
