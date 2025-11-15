@@ -29,19 +29,19 @@ body {
 .box-container div {
   width: 160px;
   height: 100px;
-  background-color: #f8f9fa;
+  background-color: #F8F9FA;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   border-radius: 10px;
-  border: 2px solid #dee2e6;
+  border: 1px solid #dee2e6;
   font-family: Arial, sans-serif;
 }
 
 .main-clickable {
-  border: 2px solid #ccc;
-  background-color: #f8f9fa;
+  border: 1px solid #ccc;
+  background-color: #ECF0F1;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -64,7 +64,7 @@ body {
   top: 50%;
   width: 400px;
   height: 20px;
-  background-color: #8b5a2b;
+  background-color: #5D4E37;
   transform: translate(-50%, -50%);
   transform-origin: center;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
@@ -81,7 +81,7 @@ body {
   height: 0;
   border-left: 20px solid transparent;
   border-right: 20px solid transparent;
-  border-bottom: 40px solid #555;
+  border-bottom: 40px solid #34495E;
   transform: translateX(-50%);
   z-index: 0;
 }
@@ -100,7 +100,7 @@ body {
   justify-content: center;
   align-items: center;
   font-weight: bold;
-  color: #007bff;
+  color: #ffffff;
   font-size: 14px;
 }
 
@@ -108,7 +108,7 @@ body {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #ff6b6b, #ee5a52);
+  /* background: linear-gradient(135deg, #ff6b6b, #ee5a52); */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -119,18 +119,14 @@ body {
 
 .resetButton {
   padding: 10px 20px;
-  background-color: #dc3545;
+  background-color: #34495E;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 0,95em;
   font-weight: bold;
   transition: background-color 0.3s;
-}
-
-.resetButton:hover {
-  background-color: #c82333;
 }
 
 .history-log {
@@ -151,8 +147,17 @@ body {
   border-bottom: 1px solid #ddd;
   font-size: 14px;
   color: #333;
+  font-family: 'Oxygen' 'Ubuntu' sans-serif;
 }
 
-.history-entry:last-child {
-  border-bottom: none;
+.title {
+  margin: 0;
+  font-size: 0.8em;
+  color: #6c757d;
+}
+
+.value {
+  font-size: 24px;
+  font-weight: 600;
+  color: #2c3e50;
 }

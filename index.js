@@ -8,10 +8,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const data = { ...initialData }
 
-    document.querySelector(".box1 .value").textContent = data["Left Weight"]
-    document.querySelector(".box2 .value").textContent = data["Next Weight"]
-    document.querySelector(".box3 .value").textContent = data["Right Weight"]
-    document.querySelector(".box4 .value").textContent = data["Tilt Angle"]
+    document.querySelector(".box1 .value").textContent = data["Left Weight"] + " kg"
+    document.querySelector(".box2 .value").textContent = data["Next Weight"] + " kg"
+    document.querySelector(".box3 .value").textContent = data["Right Weight"] + " kg"
+    document.querySelector(".box4 .value").textContent = data["Tilt Angle"] + "°"     
 
     const plank = document.querySelector(".plank")
     const clickable = document.querySelector(".clickable")
@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let previewCircle = document.createElement("div")
     previewCircle.className = "preview-circle"
-    plank.appendChild(previewCircle)
+    clickable.appendChild(previewCircle)
 
     let historyLog = document.querySelector(".history-log")
 
@@ -40,9 +40,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     clickable.addEventListener("mousemove", (event) => {
-        console.log("Mouse move");
         const rect = clickable.getBoundingClientRect()
         const hoverX = event.clientX - rect.left;
+        console.log("Mouse move", event.clientX, rect.left);
         previewCircle.style.left = hoverX - 20 + "px"
         previewCircle.innerHTML = data["Next Weight"]
         previewCircle.style.opacity = "1"
@@ -80,7 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const angle = angleValue(rightTorque, leftTorque)
         plank.style.transform = `translate(-50%, -50%) rotate(${angle}deg)`
         data["Tilt Angle"] = Math.round(angle)
-        document.querySelector(".box4 .value").innerHTML = data["Tilt Angle"]
+        document.querySelector(".box4 .value").innerHTML = data["Tilt Angle"] + "°"
 
     }
 
@@ -104,7 +104,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const circle = document.createElement("div")
         circle.className = "weight-circle"
         circle.innerHTML = data["Next Weight"]
-        circle.title = `${side} - ${distanceToCenter.toFixed(0)}px`
 
         const container = plank.parentElement
         const containerRect = container.getBoundingClientRect()
@@ -114,6 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
         circle.style.top = containerRect.top - 100 + "px"
         circle.style.transition = "top 0.5s ease-in"
         circle.style.transform = "none";
+        circle.style.backgroundColor = "#" + Math.floor(Math.random() * 16777215).toString(16);
 
         container.appendChild(circle)
 
@@ -124,7 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => {
             circle.style.position = "absolute"
             circle.style.left = clickX + "px"
-            circle.style.top = "0px";
+            circle.style.top = "-10px";
             circle.style.transition = "none"
             circle.style.transform = ""
             
@@ -135,14 +135,14 @@ document.addEventListener('DOMContentLoaded', () => {
         addHistoryEntry(data["Next Weight"], side, Math.round(distanceToCenter))
 
         data["Next Weight"] = Math.floor(Math.random() * 10) + 1
-        document.querySelector(".box2 .value").innerHTML = data["Next Weight"]
+        document.querySelector(".box2 .value").innerHTML = data["Next Weight"] + " kg"
         previewCircle.innerHTML = data["Next Weight"]
         if(side === "left"){
             data["Left Weight"] += parseInt(circle.innerHTML)
-            document.querySelector(".box1 .value").innerHTML = data["Left Weight"]
+            document.querySelector(".box1 .value").innerHTML = data["Left Weight"] + " kg"
         } else if(side === "right"){
             data["Right Weight"] += parseInt(circle.innerHTML)
-            document.querySelector(".box3 .value").innerHTML = data["Right Weight"]
+            document.querySelector(".box3 .value").innerHTML = data["Right Weight"] + " kg"
         }
     })
 
@@ -158,10 +158,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const angle = angleValue(0, 0)
         plank.style.transform = `translate(-50%, -50%) rotate(${angle}deg)`
 
-        document.querySelector(".box1 .value").innerHTML = data["Left Weight"]
-        document.querySelector(".box2 .value").innerHTML = data["Next Weight"]
-        document.querySelector(".box3 .value").innerHTML = data["Right Weight"]
-        document.querySelector(".box4 .value").innerHTML = data["Tilt Angle"]
+        document.querySelector(".box1 .value").innerHTML = data["Left Weight"] + " kg"
+        document.querySelector(".box2 .value").innerHTML = data["Next Weight"] + " kg"
+        document.querySelector(".box3 .value").innerHTML = data["Right Weight"] + " kg"
+        document.querySelector(".box4 .value").innerHTML = data["Tilt Angle"] + "°"
 
         previewCircle.innerHTML = data["Next Weight"]
 
