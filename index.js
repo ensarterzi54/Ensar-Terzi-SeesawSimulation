@@ -42,7 +42,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const rect = clickable.getBoundingClientRect()
         const hoverX = event.clientX - rect.left;
 
-        previewCircle.style.left = hoverX - 20 + "px"
+        const previewSize = 30 + (data["Next Weight"] * 4)
+        const previewRadius = previewSize / 2
+        previewCircle.style.width = previewSize + "px"
+        previewCircle.style.height = previewSize + "px"
+        previewCircle.style.fontSize = (10 + data["Next Weight"]) + "px"
+        previewCircle.style.left = hoverX - previewRadius + "px"
+
         previewCircle.innerHTML = data["Next Weight"]
         previewCircle.style.opacity = "1"
     })
@@ -65,7 +71,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         circles.forEach((circle) => {
             const weight = parseInt(circle.innerHTML) || 0
-            const position = parseFloat(circle.style.left) + 20
+            const circleSize = 30 + (weight * 4)
+            const circleRadius = circleSize / 2
+            const position = parseFloat(circle.style.left) + circleRadius
             const distanceFromCenter = position - plankCenter
 
             if (distanceFromCenter < 0) {
@@ -84,18 +92,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     clickable.addEventListener("click", (event) => {
         const plankPosition = plank.getBoundingClientRect()
-        let clickX = event.clientX - plankPosition.left - 20
+        const nextWeight = data["Next Weight"]
+        const circleSize = 30 + (nextWeight * 4)
+        const circleRadius = circleSize / 2
+        let clickX = event.clientX - plankPosition.left - circleRadius
 
         if (clickX < 0) {
             clickX = 0
         }
-        if (clickX > plank.offsetWidth - 40) {
-            clickX = plank.offsetWidth - 40
+        if (clickX > plank.offsetWidth - (circleRadius * 2)) {
+            clickX = plank.offsetWidth - (circleRadius * 2)
         }
         
         const plankCenter = plank.offsetWidth / 2
-        const distanceToCenter = Math.abs((clickX + 20) - plankCenter)
-        const side = (clickX + 20) < plankCenter ? "left" : "right"
+        const distanceToCenter = Math.abs((clickX + circleRadius) - plankCenter)
+        const side = (clickX + circleRadius) < plankCenter ? "left" : "right"
 
         //Ağırlık elementi
         const circle = document.createElement("div")
@@ -106,7 +117,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const containerRect = container.getBoundingClientRect()
 
         circle.style.position = "fixed"
-        circle.style.left = event.clientX - 20 + "px"
+        circle.style.width = circleSize + "px"
+        circle.style.height = circleSize + "px"
+        circle.style.fontSize = (10 + data["Next Weight"]) + "px"
+        circle.style.left = event.clientX - circleRadius + "px"
         circle.style.top = containerRect.top - 100 + "px"
         circle.style.transition = "top 0.5s ease-in"
         circle.style.transform = "none";
@@ -133,6 +147,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         data["Next Weight"] = Math.floor(Math.random() * 10) + 1
         document.querySelector(".box2 .value").innerHTML = data["Next Weight"] + " kg"
+        const newPreviewSize = 30 + (data["Next Weight"] * 4)
+        previewCircle.style.width = newPreviewSize + "px"
+        previewCircle.style.height = newPreviewSize + "px"
+        previewCircle.style.fontSize = (10 + data["Next Weight"]) + "px"
         previewCircle.innerHTML = data["Next Weight"]
         if(side === "left"){
             data["Left Weight"] += parseInt(circle.innerHTML)
