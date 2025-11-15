@@ -30,7 +30,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const addHistoryEntry = (weight, side, distance) => {
-        console.log("addHistoryEntry: ",weight, side, distance)
         const entry = document.createElement("div")
         entry.className = "history-entry"
         entry.textContent = `${weight}kg dropped on ${side.toLowerCase()} side at ${distance}px from center`
@@ -42,14 +41,13 @@ document.addEventListener('DOMContentLoaded', () => {
     clickable.addEventListener("mousemove", (event) => {
         const rect = clickable.getBoundingClientRect()
         const hoverX = event.clientX - rect.left;
-        console.log("Mouse move", event.clientX, rect.left);
+
         previewCircle.style.left = hoverX - 20 + "px"
         previewCircle.innerHTML = data["Next Weight"]
         previewCircle.style.opacity = "1"
     })
 
     clickable.addEventListener("mouseleave", () => {
-        console.log("mouse leave")
         previewCircle.style.opacity = "0"
     })
 
@@ -98,7 +96,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const plankCenter = plank.offsetWidth / 2
         const distanceToCenter = Math.abs((clickX + 20) - plankCenter)
         const side = (clickX + 20) < plankCenter ? "left" : "right"
-        console.log(`Clicked at ${clickX}, Side: ${side}, Distance to center: ${distanceToCenter}`)
 
         //Ağırlık elementi
         const circle = document.createElement("div")
