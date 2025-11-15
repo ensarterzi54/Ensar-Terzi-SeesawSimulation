@@ -21,6 +21,24 @@ document.addEventListener('DOMContentLoaded', () => {
     previewCircle.className = "preview-circle"
     plank.appendChild(previewCircle)
 
+    let historyLog = document.querySelector(".history-log")
+
+    if (!historyLog) {
+        historyLog = document.createElement("div")
+        historyLog.className = "history-log"
+        document.querySelector(".container").appendChild(historyLog)
+    }
+
+    const addHistoryEntry = (weight, side, distance) => {
+        console.log("addHistoryEntry: ",weight, side, distance)
+        const entry = document.createElement("div")
+        entry.className = "history-entry"
+        entry.textContent = `${weight}kg dropped on ${side.toLowerCase()} side at ${distance}px from center`
+        historyLog.appendChild(entry)
+        
+        historyLog.insertBefore(entry, historyLog.firstChild)
+    }
+
     clickable.addEventListener("mousemove", (event) => {
         console.log("Mouse move");
         const rect = clickable.getBoundingClientRect()
@@ -30,7 +48,6 @@ document.addEventListener('DOMContentLoaded', () => {
         previewCircle.style.opacity = "1"
     })
 
-    // Mouse clickable'dan çıkınca preview kaybolsun
     clickable.addEventListener("mouseleave", () => {
         console.log("mouse leave")
         previewCircle.style.opacity = "0"
@@ -80,7 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         const plankCenter = plank.offsetWidth / 2
         const distanceToCenter = Math.abs((clickX + 20) - plankCenter)
-        const side = (clickX + 20) < plankCenter ? "Sol" : "Sağ"
+        const side = (clickX + 20) < plankCenter ? "left" : "right"
         console.log(`Clicked at ${clickX}, Side: ${side}, Distance to center: ${distanceToCenter}`)
 
         //Ağırlık elementi
@@ -115,12 +132,15 @@ document.addEventListener('DOMContentLoaded', () => {
             calculateTilt()
         }, 510)
 
+        addHistoryEntry(data["Next Weight"], side, Math.round(distanceToCenter))
+
         data["Next Weight"] = Math.floor(Math.random() * 10) + 1
         document.querySelector(".box2 .value").innerHTML = data["Next Weight"]
-        if(side === "Sol"){
+        previewCircle.innerHTML = data["Next Weight"]
+        if(side === "left"){
             data["Left Weight"] += parseInt(circle.innerHTML)
             document.querySelector(".box1 .value").innerHTML = data["Left Weight"]
-        } else if(side === "Sağ"){
+        } else if(side === "right"){
             data["Right Weight"] += parseInt(circle.innerHTML)
             document.querySelector(".box3 .value").innerHTML = data["Right Weight"]
         }
@@ -144,6 +164,8 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelector(".box4 .value").innerHTML = data["Tilt Angle"]
 
         previewCircle.innerHTML = data["Next Weight"]
+
+        historyLog.innerHTML = ""
     });
 
     

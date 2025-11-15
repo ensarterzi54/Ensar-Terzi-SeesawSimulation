@@ -115,8 +115,6 @@ body {
   font-weight: bold;
   color: white;
   font-size: 14px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-  border: 2px solid #fff;
 }
 
 .resetButton {
@@ -133,4 +131,28 @@ body {
 
 .resetButton:hover {
   background-color: #c82333;
+}
+
+.history-log {
+  padding: 10px;
+  width: 100%;
+  background-color: #F8F9FA;
+  border-radius: 8px;
+  min-height: 115px;
+  max-height: 140px;
+  overflow-y: auto;
+  font-family: monospace;
+}
+
+.history-entry {
+  background-color: #FFFFFF;
+  padding: 8px 10px;
+  margin: 4px 0;
+  border-bottom: 1px solid #ddd;
+  font-size: 14px;
+  color: #333;
+}
+
+.history-entry:last-child {
+  border-bottom: none;
 }
