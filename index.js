@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const plank = document.querySelector(".plank")
     const clickable = document.querySelector(".clickable")
+    const resetButton = document.querySelector(".resetButton")
 
     let previewCircle = document.createElement("div")
     previewCircle.className = "preview-circle"
@@ -124,6 +125,26 @@ document.addEventListener('DOMContentLoaded', () => {
             document.querySelector(".box3 .value").innerHTML = data["Right Weight"]
         }
     })
+
+    resetButton.addEventListener("click", () => {
+        const circles = plank.querySelectorAll(".weight-circle")
+        circles.forEach((circle) => circle.remove())
+
+        data["Left Weight"] = initialData["Left Weight"]
+        data["Next Weight"] = initialData["Next Weight"]
+        data["Right Weight"] = initialData["Right Weight"]
+        data["Tilt Angle"] = initialData["Tilt Angle"]
+
+        const angle = angleValue(0, 0)
+        plank.style.transform = `translate(-50%, -50%) rotate(${angle}deg)`
+
+        document.querySelector(".box1 .value").innerHTML = data["Left Weight"]
+        document.querySelector(".box2 .value").innerHTML = data["Next Weight"]
+        document.querySelector(".box3 .value").innerHTML = data["Right Weight"]
+        document.querySelector(".box4 .value").innerHTML = data["Tilt Angle"]
+
+        previewCircle.innerHTML = data["Next Weight"]
+    });
 
     
 })
