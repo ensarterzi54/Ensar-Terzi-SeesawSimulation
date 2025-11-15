@@ -118,3 +118,19 @@ body {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
   border: 2px solid #fff;
 }
+
+.resetButton {
+  padding: 10px 20px;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.resetButton:hover {
+  background-color: #c82333;
+}

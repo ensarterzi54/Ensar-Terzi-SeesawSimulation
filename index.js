@@ -35,10 +35,48 @@ document.addEventListener('DOMContentLoaded', () => {
         previewCircle.style.opacity = "0"
     })
 
+    const angleValue = (rightTorque, leftTorque) => {
+        const rawAngle = (rightTorque - leftTorque) / 10
+        const angle = Math.max(-30, Math.min(30, rawAngle))
+
+        return angle
+    }
+    const calculateTilt = () => {
+        const circles = plank.querySelectorAll(".weight-circle")
+        const plankCenter = plank.offsetWidth / 2
+        let leftTorque = 0
+        let rightTorque = 0
+
+        circles.forEach((circle) => {
+            const weight = parseInt(circle.innerHTML) || 0
+            const position = parseFloat(circle.style.left) + 20
+            const distanceFromCenter = position - plankCenter
+
+            if (distanceFromCenter < 0) {
+                leftTorque += weight * Math.abs(distanceFromCenter)
+            } else {
+                rightTorque += weight * Math.abs(distanceFromCenter)
+            }
+        })
+
+        const angle = angleValue(rightTorque, leftTorque)
+        plank.style.transform = `translate(-50%, -50%) rotate(${angle}deg)`
+        data["Tilt Angle"] = Math.round(angle)
+        document.querySelector(".box4 .value").innerHTML = data["Tilt Angle"]
+
+    }
+
     clickable.addEventListener("click", (event) => {
         const plankPosition = plank.getBoundingClientRect()
         let clickX = event.clientX - plankPosition.left - 20
 
+        if (clickX < 0) {
+            clickX = 0
+        }
+        if (clickX > plank.offsetWidth - 40) {
+            clickX = plank.offsetWidth - 40
+        }
+        
         const plankCenter = plank.offsetWidth / 2
         const distanceToCenter = Math.abs((clickX + 20) - plankCenter)
         const side = (clickX + 20) < plankCenter ? "Sol" : "Sağ"
@@ -73,6 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
             circle.style.transform = ""
             
             plank.appendChild(circle)
+            calculateTilt()
         }, 510)
 
         data["Next Weight"] = Math.floor(Math.random() * 10) + 1
@@ -85,4 +124,6 @@ document.addEventListener('DOMContentLoaded', () => {
             document.querySelector(".box3 .value").innerHTML = data["Right Weight"]
         }
     })
+
+    
 })
