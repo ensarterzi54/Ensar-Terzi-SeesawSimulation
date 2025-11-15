@@ -1,4 +1,4 @@
-##Seesaw Simulation
+## Seesaw Simulation
 
 This project is a seesaw simulation. Users can monitor torque, balance, and tilt angle by adding or removing weight.
 
@@ -12,7 +12,7 @@ Every click by the user is saved in a history log.
 
 When the Reset button is clicked, all weights are removed from the plank, the values ​​are reset and the history is cleared.
 
-#Calculations
+# Calculations
 
 Each weight has a torque depending on its distance from the center:
 Torque = Weight × DistanceFromCenter
