@@ -15,8 +15,11 @@ When the Reset button is clicked, all weights are removed from the plank, the va
 # Calculations
 
 Each weight has a torque depending on its distance from the center:
+
 Torque = Weight × DistanceFromCenter
 
 The plank angle is calculated from the difference between right and left torques:
+
 Angle = (RightTorque - LeftTorque) / 10
+
 The angle is limited to ±30°
