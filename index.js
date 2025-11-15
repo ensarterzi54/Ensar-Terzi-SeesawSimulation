@@ -74,5 +74,15 @@ document.addEventListener('DOMContentLoaded', () => {
             
             plank.appendChild(circle)
         }, 510)
+
+        data["Next Weight"] = Math.floor(Math.random() * 10) + 1
+        document.querySelector(".box2 .value").innerHTML = data["Next Weight"]
+        if(side === "Sol"){
+            data["Left Weight"] += parseInt(circle.innerHTML)
+            document.querySelector(".box1 .value").innerHTML = data["Left Weight"]
+        } else if(side === "Sağ"){
+            data["Right Weight"] += parseInt(circle.innerHTML)
+            document.querySelector(".box3 .value").innerHTML = data["Right Weight"]
+        }
     })
 })
